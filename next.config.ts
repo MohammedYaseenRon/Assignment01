@@ -1,7 +1,12 @@
-import type { NextConfig } from "next";
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
-const nextConfig: NextConfig = {
-  /* config options here */
+module.exports = {
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*', // API route to proxy
+        destination: 'https://api.jsonserve.com/:path*', // The API you want to proxy
+      },
+    ];
+  },
 };
-
-export default nextConfig;

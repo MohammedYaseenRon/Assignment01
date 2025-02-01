@@ -1,9 +1,27 @@
-import Image from "next/image";
+"use client";
+import { useState, useEffect } from "react"
+import { motion, useAnimation } from "framer-motion"
+import ThemeSelector from '../components/themeSelector';
+import WelcomeSection from '../components/welcomeSection';
 
-export default function Home() {
+
+const HomePage = () => {
+
   return (
-    <div className="bg-red-400 h-screen">
-      Hello this is a quiz application
+    <div className="min-h-screen w-full">
+      <div>
+        <div className="flex justify-center">
+          <ThemeSelector />
+        </div>
+        <div className="p-6 text-center">
+          <h1 className='text-4xl font-semibold'>Quiz Games</h1>
+          <WelcomeSection />
+        </div>
+      </div>
     </div>
   );
-}
+
+};
+
+
+export default HomePage;
