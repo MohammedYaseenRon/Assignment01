@@ -1,6 +1,4 @@
 "use client";
-import { useState, useEffect } from "react"
-import { motion, useAnimation } from "framer-motion"
 import ThemeSelector from '../components/themeSelector';
 import WelcomeSection from '../components/welcomeSection';
 
