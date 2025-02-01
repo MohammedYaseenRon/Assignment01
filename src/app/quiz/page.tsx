@@ -25,6 +25,8 @@ export default function Quiz() {
   const [score, setScore] = useState<number>(0);
   const [isQuizComplete, setIsQuizComplete] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
+  const [showingAnswers, setShowingAnswers] = useState<boolean>(false);
+
 
   const { playSound } = useSoundEffects();
 
@@ -94,12 +96,68 @@ export default function Quiz() {
     const finalScore = calculateScore();
     setScore(finalScore);
     setIsQuizComplete(true);
+    setShowingAnswers(true);
     playSound("complete")
-    toast.success(`🎉 Quiz Completed! Your Score: ${finalScore}/${data.questions.length}`, {
+    toast.success(`🎉 Quiz Completed! Your Score: ${finalScore}/${data.questions.length * 4}`, {
       duration: 4000,
       position: "top-center",
     });
   }
+  const AnswerReview = () => {
+    if (!data) return null;
+
+    return (
+      <div className="flex flex-col h-full space-y-4  ">
+        <div className="bg-white p-4 border-b">
+          <h3 className="text-xl font-bold mb-2">Final Score: {score}/{data.questions.length * 4}</h3>
+          <p className="text-sm text-gray-600">Review your answers below:</p>
+        </div>
+
+        {data.questions.map((question, index) => {
+          const selectedAnswer = question.options.find(opt => opt.id === selectedAnswers[question.id]);
+          const correctAnswer = question.options.find(opt => opt.is_correct);
+          const isCorrect = selectedAnswer?.is_correct;
+
+          return (
+            <Card key={question.id} className="p-4">
+              <div className="space-y-2">
+                <h4 className="font-bold">Question {index + 1}: {question.description}</h4>
+
+                <div className="pl-4">
+                  <p className="text-gray-700">Your answer:
+                    <span className={`ml-2 font-medium ${isCorrect ? 'text-green-600' : 'text-red-600'}`}>
+                      {selectedAnswer?.description || 'Not answered'}
+                    </span>
+                  </p>
+
+                  {!isCorrect && (
+                    <p className="text-green-600">
+                      Correct answer: {correctAnswer?.description}
+                    </p>
+                  )}
+
+                  <p className="text-sm text-gray-600 mt-2">
+                    {isCorrect ?
+                      `✓ Correct! (+${data.correct_answer_marks} points)` :
+                      `✗ Incorrect (-${data.negative_marks} points)`}
+                  </p>
+                </div>
+              </div>
+            </Card>
+          );
+        })}
+
+        <div className="flex justify-center mt-6">
+          <Button
+            onClick={() => window.location.reload()}
+            className="border border-black text-red-600 font-bold bg-white"
+          >
+            Restart Quiz
+          </Button>
+        </div>
+      </div>
+    );
+  };
 
   if (error) {
     return (
@@ -119,7 +177,7 @@ export default function Quiz() {
 
 
   return (
-    <div className='h-screen flex justify-center items-center p-4'>
+    <div className='min-h-screen flex justify-center items-center p-4'>
       <Card className='w-full sm:w-3/4 md:w-1/2 lg:w-1/2 max-w-2xl p-2'>
         <CardHeader>
           <CardTitle>{data.title}</CardTitle>
@@ -139,16 +197,8 @@ export default function Quiz() {
           )}
 
           {isQuizComplete ? (
-            <div className="space-y-4">
-              <h3 className='text-xl font-bold'>Quiz Complete</h3>
-              <p>Your Score: {score}</p>
-              <p>Total Question: {data.questions.length}</p>
-              <Button onClick={() => window.location.reload()}>
-                Restart quiz
-              </Button>
-            </div>
+            <AnswerReview />
           ) : (
-
             <div className="space-y-4">
               <p className="text-lg font-bold">{currentQuestion.description}</p>
               <div className="space-y-2">
@@ -203,4 +253,6 @@ export default function Quiz() {
     </div>
   )
 }
+
+
 

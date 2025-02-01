@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Quiz Application
 
-## Getting Started
+Overview
 
-First, run the development server:
+The **Quiz Application** is a web-based quiz platform that allows users to attempt quiz. The app displays questions with multiple-choice options, keeps track of scores. It's designed with an intuitive UI to make learning fun and engaging.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Key Features:
+- Answer multiple-choice questions.
+- View the correct answers and detailed solutions after completing a quiz.
+- Real-Time Score Tracking.
+- User-friendly design for easy navigation.
+- Gamified Experience with Sound Effects
+- Customizable Theme
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tech Stack
+- Frontend: Next.js, React
+- State Management: React Context API 
+- Styling: TailwindCSS 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Screenshots
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Screenshot 1: Quiz Start Page
+![Quiz Start](./assets/homequiz.png)
 
-## Learn More
+### Screenshot 2: Quiz Question Page
+![Quiz Question](./assets/quiz.png)
 
-To learn more about Next.js, take a look at the following resources:
+### Screenshot 3: Quiz Solution Page
+![Quiz Result](./assets/solution.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Video
+[Click here to watch the Quiz Walkthrough](https://youtu.be/JQMG_sEq8_w)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Installation
+
+### Prerequisites
+Before running the app, make sure you have the following installed:
+- [Node.js](https://nodejs.org/en/) (v14 or higher)
+- [npm](https://www.npmjs.com/) (or [yarn](https://yarnpkg.com/))
+
+### Setup Instructions
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/quiz-project01.git
